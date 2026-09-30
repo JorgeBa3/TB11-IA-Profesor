@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Tecnikids TB11 Leccion 4",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": -100.76,
+      "attrs": { "env": "micropython-20231005-v1.21.0" }
+    },
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 220.2, "left": -176.4, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 31.42, "left": 136.72, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 159.6, "left": 157.4, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 176.75, "left": 96, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "bz1", "top": 165.6, "left": 223.8, "attrs": { "volume": "0.2" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "bb1:bp.1", "red", [ "h0" ] ],
+    [ "esp:GND.1", "bb1:bn.1", "black", [ "h0" ] ],
+    [ "bb1:bp.2", "imu1:VCC", "red", [ "v-38.4", "h201.6" ] ],
+    [ "bb1:bn.2", "imu1:GND", "black", [ "v-28.8", "h192" ] ],
+    [ "esp:22", "imu1:SCL", "green", [ "h19.2", "v-48", "h144" ] ],
+    [ "esp:21", "imu1:SDA", "blue", [ "h28.8", "v-67.2", "h124.8" ] ],
+    [ "esp:26", "bb1:20t.a", "orange", [ "h-19.2", "v201.6" ] ],
+    [ "bb1:20t.e", "r1:2", "orange", [ "v0" ] ],
+    [ "r1:1", "led1:A", "orange", [ "h0" ] ],
+    [ "led1:C", "bb1:24t.e", "black", [ "v0" ] ],
+    [ "bb1:24t.a", "bb1:bn.10", "black", [ "v-38.4" ] ],
+    [ "esp:25", "bb1:30t.a", "violet", [ "h-28.8", "v211.2" ] ],
+    [ "bb1:30t.e", "bz1:2", "violet", [ "v0" ] ],
+    [ "bz1:1", "bb1:34t.e", "black", [ "v0" ] ],
+    [ "bb1:34t.a", "bb1:bn.15", "black", [ "v-48" ] ]
+  ],
+  "dependencies": {}
+}
